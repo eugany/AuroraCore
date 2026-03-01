@@ -1,7 +1,7 @@
 ---
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
-import { DEFAULT_THEME, THEME_NAMES, THEME_STORAGE_KEY } from '../config/themes';
+import { DEFAULT_THEME } from '../config/themes';
 import { getLanguageLinks, getLocaleFromPathname, toBcp47 } from '../utils/i18n';
 import '../styles/global.css';
 
@@ -48,30 +48,7 @@ const xDefaultUrl = new URL('/en/', site).toString();
     <meta name="twitter:description" content={description} />
     <link rel="preload" href="/fonts/exo2-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/exo2-cyrillic.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/jetbrains-mono-latin.woff2" as="font" type="font/woff2" crossorigin />
     <title>{title}</title>
-    <script
-      is:inline
-      define:vars={{ defaultTheme: DEFAULT_THEME, storageKey: THEME_STORAGE_KEY, themeNames: THEME_NAMES }}
-    >
-      (() => {
-        const root = document.documentElement;
-        const availableThemes = new Set(themeNames);
-        let theme = defaultTheme;
-
-        try {
-          const storedTheme = localStorage.getItem(storageKey);
-          if (storedTheme && availableThemes.has(storedTheme)) {
-            theme = storedTheme;
-          }
-        } catch {
-          // Ignore storage failures.
-        }
-
-        root.setAttribute('data-theme', theme);
-        root.style.colorScheme = 'dark';
-      })();
-    </script>
     <script is:inline>
       (() => {
         const startDate = Date.UTC(2026, 0, 29);
@@ -90,11 +67,11 @@ const xDefaultUrl = new URL('/en/', site).toString();
     <div class="site-fog" aria-hidden="true"></div>
     <div class="site-noise" aria-hidden="true"></div>
     <div class="page-shell fade-in-up">
-      <Header homeHref={`/${currentLang}/`} />
+      <Header homeHref={`/${currentLang}/`} currentLang={currentLang} languageLinks={languageLinks} />
       <main class="main-shell">
         <slot />
       </main>
-      <Footer currentLang={currentLang} languageLinks={languageLinks} />
+      <Footer />
     </div>
   </body>
 </html>

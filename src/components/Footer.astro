@@ -1,24 +1,8 @@
----
-import type { SupportedLang } from '../utils/i18n';
-
-interface Props {
-  currentLang: SupportedLang;
-  languageLinks: Record<SupportedLang, string>;
-}
-
-const { currentLang, languageLinks } = Astro.props;
----
-
-<footer class="footer-shell fade-in-up" style="animation-delay: 420ms;">
-  <nav class="footer-links" aria-label="Social links">
-    <a href="https://github.com/AuroraCore" target="_blank" rel="noopener noreferrer">GitHub</a>
-    <a href="https://x.com/AuroraCore" target="_blank" rel="noopener noreferrer">X</a>
-    <a href="https://t.me/AuroraCore" target="_blank" rel="noopener noreferrer">Telegram</a>
+<footer class="footer-shell fade-in-up" style="animation-delay: 440ms;">
+  <p class="footer-note">AuroraCore // Intent-first operating system for AI agents</p>
+  <nav class="footer-quick" aria-label="Machine-readable endpoints">
+    <a href="/agent.md">agent.md</a>
+    <a href="/api/agent.json">agent.json</a>
+    <a href="/rss.xml">rss.xml</a>
   </nav>
-  <div class="lang-pill-row" aria-label="Available languages">
-    <a href={languageLinks.en} class={`lang-pill ${currentLang === 'en' ? 'is-active' : ''}`}>EN</a>
-    <a href={languageLinks.ru} class={`lang-pill ${currentLang === 'ru' ? 'is-active' : ''}`}>RU</a>
-    <a href={languageLinks.cn} class={`lang-pill ${currentLang === 'cn' ? 'is-active' : ''}`}>CN</a>
-    <a href={languageLinks.jp} class={`lang-pill ${currentLang === 'jp' ? 'is-active' : ''}`}>JP</a>
-  </div>
 </footer>

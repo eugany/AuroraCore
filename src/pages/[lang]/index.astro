@@ -1,6 +1,5 @@
 ---
 import GlassCard from '../../components/GlassCard.astro';
-import GlowInput from '../../components/GlowInput.astro';
 import Navigation from '../../components/Navigation.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCopy } from '../../i18n/copy';
@@ -26,53 +25,65 @@ const previewText = localizedLatest?.paragraphs[0] ?? '';
 
 <BaseLayout title="AuroraCore - Home" description="AuroraCore project manifesto and technical home">
   <section class="home-hub fade-in-up" style="animation-delay: 180ms;">
-    <section class="hero-grid">
-      <GlassCard class="devlog-card fade-in-up" style="animation-delay: 220ms;" as="article">
-        <div class="devlog-topline">
-          <span>{copy.home.devlogEntryLabel}</span>
-          <span>{latestDevlog ? `DAY ${latestDevlog.data.day}` : '// pending'}</span>
+    <section class="splash-window fade-in-up" style="animation-delay: 220ms;">
+      <div class="splash-bar">
+        <div class="splash-dots" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
         </div>
-
-        {
-          latestDevlog && localizedLatest ? (
-            <>
-              <h2 class="devlog-date">{latestDevlog.data.date.toISOString().slice(0, 10)}</h2>
-              <p class="devlog-copy">{localizedLatest.title}</p>
-              <p class="devlog-meta">{previewText}</p>
-              <div class="devlog-graph" aria-hidden="true"></div>
-              <a class="devlog-link" href={`/${lang}/devlog/${latestDevlog.slug}/`}>
-                {copy.home.devlogOpenLabel}
-              </a>
-            </>
-          ) : (
-            <>
-              <h2 class="devlog-date">{copy.home.devlogPendingTitle}</h2>
-              <p class="devlog-copy">{copy.home.devlogPendingBody}</p>
-              <div class="devlog-graph" aria-hidden="true"></div>
-              <a class="devlog-link" href={`/${lang}/devlog/`}>
-                {copy.home.devlogFeedLabel}
-              </a>
-            </>
-          )
-        }
-      </GlassCard>
-
-      <div class="hero-center fade-in-up" style="animation-delay: 260ms;">
-        <p class="hero-eyebrow">AURORA COMMAND</p>
-        <GlowInput />
-        <h1 class="hero-tagline">{copy.home.tagline}</h1>
+        <p class="splash-label">AURORA // VOICE-FIRST CONTROL SURFACE</p>
+        <a class="splash-link" href="/agents/">AGENTS SPACE</a>
       </div>
 
-      <GlassCard class="signal-card fade-in-up" style="animation-delay: 300ms;" as="aside">
-        <p class="signal-title">{copy.home.agentsTitle}</p>
-        <p class="signal-copy">{copy.home.agentsBody}</p>
-        <ul class="signal-list">
-          <li>/agent.md</li>
-          <li>/rss.xml</li>
-          <li>/api/agent.json</li>
-        </ul>
-        <a class="devlog-link" href="/agents/">{copy.home.agentsLinkLabel}</a>
-      </GlassCard>
+      <div class="splash-stage">
+        <GlassCard class="devlog-card" as="article">
+          <div class="devlog-topline">
+            <span>{copy.home.devlogEntryLabel}</span>
+            <span>{latestDevlog ? `DAY ${latestDevlog.data.day}` : '// pending'}</span>
+          </div>
+          {
+            latestDevlog && localizedLatest ? (
+              <>
+                <h2 class="devlog-date">{latestDevlog.data.date.toISOString().slice(0, 10)}</h2>
+                <p class="devlog-copy">{localizedLatest.title}</p>
+                <p class="devlog-meta">{previewText}</p>
+                <a class="devlog-link" href={`/${lang}/devlog/${latestDevlog.slug}/`}>
+                  {copy.home.devlogOpenLabel}
+                </a>
+              </>
+            ) : (
+              <>
+                <h2 class="devlog-date">{copy.home.devlogPendingTitle}</h2>
+                <p class="devlog-copy">{copy.home.devlogPendingBody}</p>
+                <a class="devlog-link" href={`/${lang}/devlog/`}>
+                  {copy.home.devlogFeedLabel}
+                </a>
+              </>
+            )
+          }
+        </GlassCard>
+
+        <div class="hero-center">
+          <div class="orb-shell" aria-hidden="true">
+            <div class="orb-core"></div>
+          </div>
+          <h1 class="hero-tagline">{copy.home.tagline}</h1>
+          <a class="voice-button" href="/agents/">SPEAK INTENT</a>
+          <p class="voice-note">One signal. One button. Deterministic result.</p>
+        </div>
+
+        <GlassCard class="signal-card" as="aside">
+          <p class="signal-title">{copy.home.agentsTitle}</p>
+          <p class="signal-copy">{copy.home.agentsBody}</p>
+          <ul class="signal-list">
+            <li>/agent.md</li>
+            <li>/api/agent.json</li>
+            <li>/rss.xml</li>
+          </ul>
+          <a class="devlog-link" href="/agents/">{copy.home.agentsLinkLabel}</a>
+        </GlassCard>
+      </div>
     </section>
 
     <Navigation lang={lang} />
