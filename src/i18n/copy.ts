@@ -4,6 +4,9 @@ export type HomeCopy = {
   tagline: string;
   missionTitle: string;
   missionItems: [string, string, string];
+  agentsTitle: string;
+  agentsBody: string;
+  agentsLinkLabel: string;
   devlogPendingTitle: string;
   devlogPendingBody: string;
   devlogOpenLabel: string;
@@ -32,6 +35,9 @@ const COPY: Record<SupportedLang, CopyBundle> = {
         'The whole Git ecosystem is now our toolbox for building better tools to work with source systems.',
         'Intent-first reality: humans and machines share memory and deterministic goals in one environment.',
       ],
+      agentsTitle: 'AGENTS SPACE',
+      agentsBody: 'Native machine-readable surfaces for autonomous agents, with stable endpoints and canonical context.',
+      agentsLinkLabel: 'OPEN AGENTS +',
       devlogPendingTitle: 'iteration_3',
       devlogPendingBody: 'Devlog timeline will appear here after first published entries.',
       devlogOpenLabel: 'OPEN ENTRY +',
@@ -53,6 +59,9 @@ const COPY: Record<SupportedLang, CopyBundle> = {
         'Весь Git-ландшафт стал нашей базой инструментов для создания новых средств работы с кодом и знаниями.',
         'Intent-first реальность: человек и машина разделяют общую память и детерминированные цели.',
       ],
+      agentsTitle: 'AGENTS SPACE',
+      agentsBody: 'Нативные машиночитаемые поверхности для автономных агентов: стабильные эндпоинты и канонический контекст.',
+      agentsLinkLabel: 'ОТКРЫТЬ AGENTS +',
       devlogPendingTitle: 'итерация_3',
       devlogPendingBody: 'Лента devlog появится здесь после публикации первых записей.',
       devlogOpenLabel: 'ОТКРЫТЬ ЗАПИСЬ +',
@@ -74,6 +83,9 @@ const COPY: Record<SupportedLang, CopyBundle> = {
         '整个 Git 生态已经成为我们构建下一代协作工具的基础。',
         '意图优先现实: 人与机器共享记忆并围绕确定性目标协同工作。',
       ],
+      agentsTitle: 'AGENTS SPACE',
+      agentsBody: '为自治智能体提供原生机器可读层，包含稳定端点与规范化上下文。',
+      agentsLinkLabel: '打开 AGENTS +',
       devlogPendingTitle: 'iteration_3',
       devlogPendingBody: '首批日志发布后，这里会显示最新开发记录。',
       devlogOpenLabel: '打开日志 +',
@@ -95,6 +107,9 @@ const COPY: Record<SupportedLang, CopyBundle> = {
         'Gitエコシステム全体を、開発と運用のための新しい道具へ再構成する。',
         'Intent-firstの世界観: 人間と機械が記憶と決定目標を共有する。',
       ],
+      agentsTitle: 'AGENTS SPACE',
+      agentsBody: '自律エージェント向けに、安定したエンドポイントと正規コンテキストを備えた機械可読レイヤーを提供する。',
+      agentsLinkLabel: 'AGENTS を開く +',
       devlogPendingTitle: 'iteration_3',
       devlogPendingBody: '最初の投稿が公開されると、ここに最新ログが表示されます。',
       devlogOpenLabel: 'エントリーを開く +',

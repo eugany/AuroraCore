@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="AuroraCore - Agents Space" description="Machine-readable interfaces for AuroraCore agents">
+  <section class="glass-card space-y-4 fade-in-up" style="animation-delay: 180ms;">
+    <h1 class="text-3xl font-semibold text-[var(--color-heading)]">AGENTS SPACE</h1>
+    <p>
+      Agent-native layer with canonical machine-readable surfaces for autonomous runtimes and external orchestration.
+    </p>
+    <ul class="mission-list">
+      <li><a href="/api/agent.json">/api/agent.json</a> - structured status and latest entries.</li>
+      <li><a href="/agent.md">/agent.md</a> - human and agent-readable instruction layer.</li>
+      <li><a href="/.well-known/llm.txt">/.well-known/llm.txt</a> - canonical LLM index.</li>
+      <li><a href="/rss.xml">/rss.xml</a> - feed surface for subscribers and bots.</li>
+    </ul>
+  </section>
+</BaseLayout>
