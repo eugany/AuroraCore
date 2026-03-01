@@ -32,12 +32,14 @@ const previewText = localizedLatest?.paragraphs[0] ?? '';
           <span>{copy.home.devlogEntryLabel}</span>
           <span>{latestDevlog ? `DAY ${latestDevlog.data.day}` : '// pending'}</span>
         </div>
+
         {
           latestDevlog && localizedLatest ? (
             <>
               <h2 class="devlog-date">{latestDevlog.data.date.toISOString().slice(0, 10)}</h2>
               <p class="devlog-copy">{localizedLatest.title}</p>
-              <p class="devlog-copy">{previewText}</p>
+              <p class="devlog-meta">{previewText}</p>
+              <div class="devlog-graph" aria-hidden="true"></div>
               <a class="devlog-link" href={`/${lang}/devlog/${latestDevlog.slug}/`}>
                 {copy.home.devlogOpenLabel}
               </a>
@@ -46,6 +48,7 @@ const previewText = localizedLatest?.paragraphs[0] ?? '';
             <>
               <h2 class="devlog-date">{copy.home.devlogPendingTitle}</h2>
               <p class="devlog-copy">{copy.home.devlogPendingBody}</p>
+              <div class="devlog-graph" aria-hidden="true"></div>
               <a class="devlog-link" href={`/${lang}/devlog/`}>
                 {copy.home.devlogFeedLabel}
               </a>
@@ -55,13 +58,19 @@ const previewText = localizedLatest?.paragraphs[0] ?? '';
       </GlassCard>
 
       <div class="hero-center fade-in-up" style="animation-delay: 260ms;">
+        <p class="hero-eyebrow">AURORA COMMAND</p>
         <GlowInput />
-        <p class="hero-tagline">{copy.home.tagline}</p>
+        <h1 class="hero-tagline">{copy.home.tagline}</h1>
       </div>
 
       <GlassCard class="signal-card fade-in-up" style="animation-delay: 300ms;" as="aside">
         <p class="signal-title">{copy.home.agentsTitle}</p>
         <p class="signal-copy">{copy.home.agentsBody}</p>
+        <ul class="signal-list">
+          <li>/agent.md</li>
+          <li>/rss.xml</li>
+          <li>/api/agent.json</li>
+        </ul>
         <a class="devlog-link" href="/agents/">{copy.home.agentsLinkLabel}</a>
       </GlassCard>
     </section>
