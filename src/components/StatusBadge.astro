@@ -1,0 +1,11 @@
+---
+interface Props {
+  day: number;
+}
+
+const { day } = Astro.props;
+---
+
+<p class="status-badge">
+  R&D ACTIVE · DAY <span data-uptime-day>{day}</span>+
+</p>

@@ -1,0 +1,19 @@
+{
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/en/",
+      "permanent": false
+    },
+    {
+      "source": "/devlog",
+      "destination": "/en/devlog/",
+      "permanent": false
+    },
+    {
+      "source": "/devlog/:slug",
+      "destination": "/en/devlog/:slug/",
+      "permanent": false
+    }
+  ]
+}

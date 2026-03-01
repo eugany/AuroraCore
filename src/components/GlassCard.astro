@@ -1,0 +1,13 @@
+---
+interface Props {
+  as?: keyof HTMLElementTagNameMap;
+  class?: string;
+}
+
+const { as = 'section', class: className = '', ...rest } = Astro.props;
+const Tag = as;
+---
+
+<Tag class={`glass-card ${className}`} {...rest}>
+  <slot />
+</Tag>

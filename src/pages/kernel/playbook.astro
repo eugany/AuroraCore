@@ -1,0 +1,31 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const entries = (await getCollection('playbook')).sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+---
+
+<BaseLayout title="AuroraCore - Playbook" description="AgentOps v2 playbook">
+  <section class="space-y-4 fade-in-up" style="animation-delay: 180ms;">
+    <h1 class="text-3xl font-semibold text-[var(--color-heading)]">KERNEL :: PLAYBOOK</h1>
+    <p class="nav-muted">Methodology registry for AgentOps v2 execution loops.</p>
+
+    {
+      entries.length === 0 ? (
+        <p class="nav-muted">No playbook entries yet.</p>
+      ) : (
+        <ul class="space-y-3">
+          {entries.map((entry) => (
+            <li class="glass-card space-y-2">
+              <h2 class="text-lg text-[var(--color-heading)]">{entry.data.title}</h2>
+              <p class="text-sm text-[var(--color-muted)]">
+                {entry.data.date.toISOString().slice(0, 10)} · {entry.data.tags.join(', ')}
+              </p>
+              <p>{entry.body.split('\n').find((line) => line.trim().length > 0)}</p>
+            </li>
+          ))}
+        </ul>
+      )
+    }
+  </section>
+</BaseLayout>

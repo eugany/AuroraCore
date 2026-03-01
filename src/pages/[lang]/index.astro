@@ -1,0 +1,72 @@
+---
+import GlassCard from '../../components/GlassCard.astro';
+import GlowInput from '../../components/GlowInput.astro';
+import Navigation from '../../components/Navigation.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCopy } from '../../i18n/copy';
+import { getLocalizedPost } from '../../i18n/devlog';
+import { getDevlogEntries } from '../../utils/devlog';
+import { SUPPORTED_LANGS, type SupportedLang } from '../../utils/i18n';
+
+export function getStaticPaths() {
+  return SUPPORTED_LANGS.map((lang) => ({ params: { lang } }));
+}
+
+const lang = Astro.params.lang as SupportedLang;
+const copy = getCopy(lang);
+
+const devlogEntries = await getDevlogEntries();
+const latestDevlog = devlogEntries
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .at(0);
+
+const localizedLatest = latestDevlog ? getLocalizedPost(latestDevlog, lang) : null;
+const previewText = localizedLatest?.paragraphs[0] ?? '';
+---
+
+<BaseLayout title="AuroraCore - Home" description="AuroraCore project manifesto and technical home">
+  <section class="hero-grid">
+    <GlassCard class="devlog-card fade-in-up" style="animation-delay: 200ms;" as="article">
+      <div class="devlog-topline">
+        <span>{copy.home.devlogEntryLabel}</span>
+        <span>{latestDevlog ? `DAY ${latestDevlog.data.day}` : '// pending'}</span>
+      </div>
+      {
+        latestDevlog && localizedLatest ? (
+          <>
+            <h2 class="devlog-date">{latestDevlog.data.date.toISOString().slice(0, 10)}</h2>
+            <p class="devlog-copy">{localizedLatest.title}</p>
+            <p class="devlog-copy">{previewText}</p>
+            <a class="devlog-link" href={`/${lang}/devlog/${latestDevlog.slug}/`}>
+              {copy.home.devlogOpenLabel}
+            </a>
+          </>
+        ) : (
+          <>
+            <h2 class="devlog-date">{copy.home.devlogPendingTitle}</h2>
+            <p class="devlog-copy">{copy.home.devlogPendingBody}</p>
+            <a class="devlog-link" href={`/${lang}/devlog/`}>
+              {copy.home.devlogFeedLabel}
+            </a>
+          </>
+        )
+      }
+    </GlassCard>
+
+    <div class="hero-center fade-in-up" style="animation-delay: 240ms;">
+      <GlowInput />
+      <p class="hero-tagline">{copy.home.tagline}</p>
+    </div>
+  </section>
+
+  <Navigation lang={lang} />
+
+  <GlassCard class="mission-card fade-in-up" style="animation-delay: 340ms;" as="section">
+    <h2 class="mission-title">{copy.home.missionTitle}</h2>
+    <ul class="mission-list">
+      <li>{copy.home.missionItems[0]}</li>
+      <li>{copy.home.missionItems[1]}</li>
+      <li>{copy.home.missionItems[2]}</li>
+    </ul>
+  </GlassCard>
+</BaseLayout>

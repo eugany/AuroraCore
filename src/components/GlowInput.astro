@@ -1,0 +1,17 @@
+---
+interface Props {
+  placeholder?: string;
+}
+
+const { placeholder = '[ENTER_COMMAND_OR_QUERY...]' } = Astro.props;
+---
+
+<div class="glow-input-wrap" aria-label="Command line">
+  <span class="glow-input-icon" aria-hidden="true">⌕</span>
+  <input type="text" class="glow-input-field" placeholder={placeholder} aria-label="Command input" />
+  <span class="glow-input-divider" aria-hidden="true"></span>
+  <div class="glow-input-tray" aria-hidden="true">
+    <span>◉</span>
+    <span>⚙</span>
+  </div>
+</div>

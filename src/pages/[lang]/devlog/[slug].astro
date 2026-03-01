@@ -1,0 +1,52 @@
+---
+import { render, type CollectionEntry } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { getLocalizedPost } from '../../../i18n/devlog';
+import { getDevlogEntries } from '../../../utils/devlog';
+import { SUPPORTED_LANGS, toBcp47, type SupportedLang } from '../../../utils/i18n';
+
+export async function getStaticPaths() {
+  const entries = await getDevlogEntries();
+  return SUPPORTED_LANGS.flatMap((lang) =>
+    entries.map((entry) => ({
+      params: { lang, slug: entry.slug },
+      props: { entry, lang },
+    })),
+  );
+}
+
+const { entry, lang } = Astro.props as {
+  entry: CollectionEntry<'devlog'>;
+  lang: SupportedLang;
+};
+
+const isNativeContentLang = lang === entry.data.lang;
+const localized = getLocalizedPost(entry, lang);
+const formatter = new Intl.DateTimeFormat(toBcp47(lang), { dateStyle: 'medium' });
+const rendered = isNativeContentLang ? await render(entry) : null;
+---
+
+<BaseLayout title={`AuroraCore - ${localized.title}`} description={`Devlog day ${entry.data.day}`}>
+  <article class="glass-card space-y-4 fade-in-up" style="animation-delay: 160ms;">
+    <p class="text-xs tracking-[0.08em] text-[var(--color-muted)]">
+      {formatter.format(entry.data.date)} · {entry.data.tags.join(', ')}
+    </p>
+    <h1 class="text-3xl font-semibold text-[var(--color-heading)]">
+      [DAY {entry.data.day}] :: {localized.title}
+    </h1>
+
+    {
+      isNativeContentLang && rendered ? (
+        <div class="space-y-4 text-[var(--color-text)]">
+          <rendered.Content />
+        </div>
+      ) : (
+        <div class="space-y-4 text-[var(--color-text)]">
+          {localized.paragraphs.map((paragraph) => (
+            <p>{paragraph}</p>
+          ))}
+        </div>
+      )
+    }
+  </article>
+</BaseLayout>

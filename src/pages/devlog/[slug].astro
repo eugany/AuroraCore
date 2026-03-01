@@ -1,0 +1,14 @@
+---
+import { getDevlogEntries } from '../../utils/devlog';
+
+export async function getStaticPaths() {
+  const entries = await getDevlogEntries();
+  return entries.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { slug: entry.slug },
+  }));
+}
+
+const { slug } = Astro.props;
+return Astro.redirect(`/en/devlog/${slug}/`);
+---

@@ -1,0 +1,20 @@
+---
+import StatusBadge from './StatusBadge.astro';
+import ThemeSwitcher from './ThemeSwitcher.astro';
+import { getUptimeDay } from '../utils/uptime';
+
+interface Props {
+  homeHref?: string;
+}
+
+const { homeHref = '/en/' } = Astro.props;
+const day = getUptimeDay();
+---
+
+<header class="header-shell fade-in-up" style="animation-delay: 120ms;">
+  <a href={homeHref} class="brand-mark" aria-label="AuroraCore home">AURORACORE</a>
+  <div class="header-tools">
+    <StatusBadge day={day} />
+    <ThemeSwitcher />
+  </div>
+</header>

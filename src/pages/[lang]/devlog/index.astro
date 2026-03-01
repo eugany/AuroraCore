@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { getCopy } from '../../../i18n/copy';
+import { getLocalizedPost } from '../../../i18n/devlog';
+import { getDevlogEntries } from '../../../utils/devlog';
+import { SUPPORTED_LANGS, toBcp47, type SupportedLang } from '../../../utils/i18n';
+
+export function getStaticPaths() {
+  return SUPPORTED_LANGS.map((lang) => ({ params: { lang } }));
+}
+
+const lang = Astro.params.lang as SupportedLang;
+const copy = getCopy(lang);
+const entries = (await getDevlogEntries()).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime(),
+);
+const formatter = new Intl.DateTimeFormat(toBcp47(lang), { dateStyle: 'medium' });
+---
+
+<BaseLayout title="AuroraCore - Devlog" description="AuroraCore development log">
+  <section class="space-y-4 fade-in-up" style="animation-delay: 160ms;">
+    <h1 class="text-3xl font-semibold text-[var(--color-heading)]">{copy.devlog.title}</h1>
+    {
+      entries.length === 0 ? (
+        <p class="text-sm text-[var(--color-muted)]">{copy.devlog.empty}</p>
+      ) : (
+        <ul class="space-y-3">
+          {entries.map((entry) => {
+            const localized = getLocalizedPost(entry, lang);
+            return (
+              <li class="glass-card">
+                <a href={`/${lang}/devlog/${entry.slug}/`} class="font-medium devlog-list-link">
+                  [DAY {entry.data.day}] :: {localized.title}
+                </a>
+                <p class="nav-muted mt-2 text-xs">
+                  {formatter.format(entry.data.date)} · {copy.devlog.tagsLabel}: {entry.data.tags.join(', ')}
+                </p>
+              </li>
+            );
+          })}
+        </ul>
+      )
+    }
+  </section>
+</BaseLayout>
