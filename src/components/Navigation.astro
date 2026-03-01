@@ -1,0 +1,36 @@
+---
+const sections = [
+  {
+    label: '~/kernel-space',
+    items: [
+      { href: '/devlog', name: './devlog' },
+      { href: '/kernel/playbook', name: './playbook' },
+      { href: '/kernel/specs', name: './specs' },
+    ]
+  },
+  {
+    label: '~/user-space',
+    items: [
+      { href: '/vision/manifesto', name: './manifesto' },
+      { href: '/vision/aurora-for-people', name: './aurora-for-people' },
+    ]
+  },
+];
+---
+
+<nav class="text-sm">
+  {sections.map(section => (
+    <div class="mb-6">
+      <div class="text-theme-accent text-xs tracking-wider mb-2">{section.label}</div>
+      <ul class="space-y-1 pl-4">
+        {section.items.map(item => (
+          <li>
+            <a href={item.href} class="text-theme-dim hover:text-theme-fg-bright transition-colors">
+              {item.name}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  ))}
+</nav>

@@ -1,0 +1,6 @@
+# AuroraCore
+> The intent-first operating system for AI agents.
+
+## About
+R&D project building a native OS environment for AI agents.
+Auto-generated content will be added in iteration 5.

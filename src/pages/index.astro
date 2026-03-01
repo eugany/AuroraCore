@@ -1,0 +1,81 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navigation from '../components/Navigation.astro';
+import { getUptimeDays } from '../utils/uptime';
+
+const days = getUptimeDays();
+---
+
+<BaseLayout>
+  <div class="max-w-5xl mx-auto px-6 py-12">
+    
+    <!-- Hero -->
+    <section class="mb-16 text-center">
+      <h1 class="text-4xl md:text-5xl font-light tracking-wider text-theme-fg-bright mb-4">
+        AURORA_CORE
+      </h1>
+      <p class="text-theme-dim text-sm tracking-widest mb-8">
+        R&D ACTIVE · DAY {days}+
+      </p>
+      <p class="text-xl md:text-2xl font-light text-theme-fg max-w-2xl mx-auto leading-relaxed">
+        The intent-first operating system for AI agents
+      </p>
+    </section>
+
+    <!-- Main content grid -->
+    <div class="grid md:grid-cols-[200px_1fr] gap-12">
+      
+      <!-- Navigation sidebar -->
+      <aside>
+        <Navigation />
+      </aside>
+
+      <!-- Content area -->
+      <div class="space-y-16">
+
+        <!-- Devlog preview card -->
+        <section class="border border-theme-border rounded-lg p-6 bg-theme-surface">
+          <div class="flex justify-between items-start mb-4">
+            <h2 class="text-xs tracking-wider text-theme-accent">DEVLOG_ENTRY</h2>
+            <span class="text-xs text-theme-dim">LATEST</span>
+          </div>
+          <p class="text-theme-fg text-sm leading-relaxed">
+            Devlog entries will appear here once content is added in iteration 3.
+          </p>
+          <a href="/devlog" class="text-xs text-theme-accent mt-4 inline-block hover:text-theme-fg-bright transition-colors">
+            VIEW ALL →
+          </a>
+        </section>
+
+        <!-- Manifesto -->
+        <section class="space-y-8">
+          <h2 class="text-xs tracking-wider text-theme-accent mb-6">THE MISSION</h2>
+          
+          <div class="space-y-6">
+            <div>
+              <h3 class="text-theme-fg-bright text-sm font-medium mb-2">RnD диктует путь</h3>
+              <p class="text-theme-dim text-sm leading-relaxed">
+                Not the author drives the product, but the research project defines infrastructure needs. The OS emerges from real challenges of building agent systems.
+              </p>
+            </div>
+
+            <div>
+              <h3 class="text-theme-fg-bright text-sm font-medium mb-2">Весь Гит теперь наш</h3>
+              <p class="text-theme-dim text-sm leading-relaxed">
+                The gods of IT gave us not the source code, but the toolkit to create tools for working with it. LLMs are the instrument; what we build with them is the real product.
+              </p>
+            </div>
+
+            <div>
+              <h3 class="text-theme-fg-bright text-sm font-medium mb-2">Intent-first Reality</h3>
+              <p class="text-theme-dim text-sm leading-relaxed">
+                An environment where human and machine share memory, boundaries, and deterministic goals. Agents don't need human interfaces — they need their own native operating layer.
+              </p>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </div>
+</BaseLayout>

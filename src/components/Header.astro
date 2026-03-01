@@ -1,0 +1,21 @@
+---
+import { getUptimeDays } from '../utils/uptime';
+const days = getUptimeDays();
+---
+
+<header class="fixed top-0 left-0 right-0 z-50 px-6 py-4 flex justify-between items-center border-b border-theme-border bg-theme-bg/80 backdrop-blur-sm">
+  <a href="/" class="text-theme-fg-bright tracking-[0.3em] text-sm font-light uppercase no-underline hover:text-theme-accent transition-colors">
+    AuroraCore
+  </a>
+  <div class="flex items-center gap-6">
+    <span class="text-theme-dim text-xs tracking-wider">
+      R&D ACTIVE · DAY {days}+
+    </span>
+    <div class="flex gap-2 text-xs">
+      <span class="px-2 py-1 rounded border border-theme-border text-theme-dim hover:text-theme-fg-bright cursor-pointer transition-colors">EN</span>
+      <span class="px-2 py-1 rounded border border-theme-border text-theme-dim hover:text-theme-fg-bright cursor-pointer transition-colors">RU</span>
+      <span class="px-2 py-1 rounded border border-theme-border text-theme-dim hover:text-theme-fg-bright cursor-pointer transition-colors">CN</span>
+      <span class="px-2 py-1 rounded border border-theme-border text-theme-dim hover:text-theme-fg-bright cursor-pointer transition-colors">JP</span>
+    </div>
+  </div>
+</header>

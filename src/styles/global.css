@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Theme system: all colors via CSS custom properties.
+   Default theme is minimal dark. Iteration 2 will add 
+   glassmorphism sci-fi and terminal themes. */
+
+:root {
+  --theme-bg: #0a0a0f;
+  --theme-surface: rgba(255, 255, 255, 0.05);
+  --theme-fg: #e0e0e8;
+  --theme-fg-dim: #6b6b80;
+  --theme-fg-bright: #ffffff;
+  --theme-accent: #5bc0be;
+  --theme-accent-dim: #3a8a88;
+  --theme-border: rgba(255, 255, 255, 0.1);
+}
+
+body {
+  background-color: var(--theme-bg);
+  color: var(--theme-fg);
+  font-family: 'Inter', system-ui, sans-serif;
+  min-height: 100vh;
+}
+
+a {
+  color: var(--theme-accent);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--theme-fg-bright);
+}
+
+::selection {
+  background-color: var(--theme-accent);
+  color: var(--theme-bg);
+}
